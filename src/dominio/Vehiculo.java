@@ -1,12 +1,11 @@
 package dominio;
 
 public abstract class Vehiculo {
-    String marca;
-    String modelo;
-    int num_plazas;
-    double precio_base;
-
-    double  precio_final;
+    private String marca;
+    private String modelo;
+    private int num_plazas;
+    private double precio_base;
+    private double precio_final;
 
     public Vehiculo(String marca, String modelo, int num_plazas, double precio_base) {
         this.marca = marca;
@@ -15,8 +14,45 @@ public abstract class Vehiculo {
         this.precio_base = precio_base;
     }
 
-    public abstract void calcularPrecioFinal();
+    public String getMarca() {
+        return marca;
+    }
 
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
 
+    public String getModelo() {
+        return modelo;
+    }
 
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public int getNumPlazas() {
+        return num_plazas;
+    }
+
+    public void setNumPlazas(int num_plazas) {
+        this.num_plazas = num_plazas;
+    }
+
+    public double getPrecioBase() {
+        return precio_base;
+    }
+
+    public void setPrecioBase(double precio_base) {
+        this.precio_base = precio_base;
+    }
+
+    public double getPrecioFinal() {
+        return precio_final;
+    }
+
+    public void setPrecioFinal(double precio_final) {
+        this.precio_final = precio_final;
+    }
+
+    public abstract double calcularPrecioFinal();
 }

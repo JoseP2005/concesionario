@@ -8,13 +8,18 @@ public class VehiculoTurismo extends Vehiculo {
         super(marca, modelo, num_plazas, precio_base);
     }
     @Override
-    public void calcularPrecioFinal() {
-        if (num_plazas <= 5) {
-            precio_final = precio_base;
+    public double calcularPrecioFinal() {
+        if (getNumPlazas() <= 5) {
+            setPrecioFinal(getPrecioBase());
         } else {
-            precio_final = (int) (precio_base + precio_base * 0.10);
+            setPrecioFinal(getPrecioBase() + getPrecioBase() * 0.10);
         }
+        return getPrecioFinal();
     }
+    @Override
+public String toString() {
+    return "VehiculoTurismo - Marca: " + getMarca() + ", Modelo: " + getModelo() + ", Num Plazas: " + getNumPlazas() + ", Precio Base: " + getPrecioBase() + ", Precio Final: " + calcularPrecioFinal();
+}
 
 
 }

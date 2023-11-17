@@ -1,9 +1,12 @@
-import dominio.Concesionario;
-import dominio.Furgoneta;
-import dominio.VehiculoTurismo;
+package aplicacion;
+import presentacion.Interfaz;
 
 public class Main {
     public static void main(String[] args) {
+            Interfaz interfaz = new Interfaz();
+            interfaz.iniciarPrograma();
+        }
+    /*public static void main(String[] args) {
         VehiculoTurismo vehiculo1 = new VehiculoTurismo("Ford", "Focus", 5,20000);
         VehiculoTurismo vehiculo2 = new VehiculoTurismo("Nissan", "Pathfinder", 7,80000);
         VehiculoTurismo vehiculo3 = new VehiculoTurismo("Honda", "Civic", 5,90000);
@@ -22,6 +25,11 @@ public class Main {
 
 
         concesionario.mostrarCatalogo();
-        System.out.println("Precio total: " + concesionario.calcularPrecioTotal());
+        double precioTotal = 0;
+        for (Vehiculo vehiculo : concesionario.getCatalogo()) {
+    precioTotal += vehiculo.calcularPrecioFinal();
+}
+        System.out.println("Precio total: " + precioTotal);
     }
+    */
 }
