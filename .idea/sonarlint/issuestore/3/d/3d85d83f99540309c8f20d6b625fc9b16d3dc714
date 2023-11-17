@@ -1,0 +1,8 @@
+
+m	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¥®§÷8«‘Øë¼1
+m	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¥®§÷8«‘Øë¼1
+v	java:S116"URename this field "num_plazas" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(à¶ÏÒøÿÿÿÿ8¯‘Øë¼1
+r	java:S116"VRename this field "precio_base" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆÕš„8¯‘Øë¼1
+x	java:S116	"WRename this field "precio_final" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚‹Ä ûÿÿÿÿ8þõ¿ì¼1
+V
+java:S5993"9Change the visibility of this constructor to "protected".(¥®§÷8¯‘Øë¼1
