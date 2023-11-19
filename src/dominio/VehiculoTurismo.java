@@ -1,7 +1,7 @@
 package dominio;
-
-public class VehiculoTurismo extends Vehiculo {
-
+import java.io.Serializable;
+public class VehiculoTurismo extends Vehiculo implements Serializable {
+    private static final long serialVersionUID = 1L;
 
 
     public VehiculoTurismo(String marca, String modelo,int num_plazas, double precio_base){

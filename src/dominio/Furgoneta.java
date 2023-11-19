@@ -1,5 +1,8 @@
 package dominio;
-public class Furgoneta extends Vehiculo {
+
+import java.io.Serializable;
+
+public class Furgoneta extends Vehiculo implements Serializable {
     private double capacidadCarga;
 
     public Furgoneta(String marca, String modelo, int num_plazas, double precio_base, double capacidadCarga) {

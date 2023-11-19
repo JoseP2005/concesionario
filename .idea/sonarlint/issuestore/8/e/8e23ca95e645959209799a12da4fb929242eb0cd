@@ -1,3 +1,7 @@
 
-m	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŠÖË‡8 þìì¼1
-m	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŠÖË‡8 þìì¼1
+m	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŠÖË‡8íì‹ï½1
+m	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŠÖË‡8îì‹ï½1
+I
+java:S2055"'Add a no-arg constructor to "Vehiculo".(¥ëÙûýÿÿÿÿ8ø¾š©¾1
+I
+java:S1905",Remove this unnecessary cast to "Furgoneta".(ë”‹½8þì‹ï½1

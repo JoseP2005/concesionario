@@ -1,12 +1,15 @@
 package presentacion;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import dominio.*;
 
-public class Interfaz {
+public class Interfaz implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private List<Vehiculo> catalogo;
     private Scanner sc;
 
@@ -16,13 +19,15 @@ public class Interfaz {
     }
 
     public void iniciarPrograma() {
-        int opcion = 0;
-    
+        cargarDatos();
+
+        int opcion;
+
         do {
             mostrarMenu();
             opcion = sc.nextInt();
             sc.nextLine();
-    
+
             switch (opcion) {
                 case 1:
                     crearVehiculoTurismo();
@@ -37,13 +42,17 @@ public class Interfaz {
                     mostrarInformacion();
                     break;
                 case 5:
+                    guardarDatos();
+                    System.out.println("Programa terminado.");
+                    break;
+                case 6:
                     System.out.println("Gracias por utilizar el programa.");
                     break;
                 default:
                     System.out.println("Opción no válida. Intente nuevamente.");
                     break;
             }
-    
+
         } while (opcion != 6);
     }
     
@@ -54,7 +63,8 @@ public class Interfaz {
         System.out.println("2. Crear Furgoneta");
         System.out.println("3. Mostrar catalogo");
         System.out.println("4. Mostrar información");
-        System.out.println("5. Salir");
+        System.out.println("5. Guardar datos");
+        System.out.println("6. Salir");
         System.out.print("Ingrese una opción: ");
     }
 
@@ -143,7 +153,57 @@ public class Interfaz {
         System.out.println("Índice no válido. Intente nuevamente.");
     }
 }
+    private void guardarDatos() {
+        try (PrintWriter writer = new PrintWriter(new FileWriter("catalogo.csv"))) {
+            for (Vehiculo vehiculo : catalogo) {
+                if (vehiculo instanceof VehiculoTurismo) {
+                    VehiculoTurismo turismo = (VehiculoTurismo) vehiculo;
+                    writer.println(String.format("Turismo,%s,%s,%d,%.2f,%.2f", turismo.getMarca(), turismo.getModelo(), turismo.getNumPlazas(), turismo.getPrecioBase(), turismo.calcularPrecioFinal()));
+                } else if (vehiculo instanceof Furgoneta) {
+                    Furgoneta furgoneta = (Furgoneta) vehiculo;
+                    writer.println(String.format("Furgoneta,%s,%s,%d,%.2f,%.2f", furgoneta.getMarca(), furgoneta.getModelo(), furgoneta.getNumPlazas(), furgoneta.getPrecioBase(), furgoneta.calcularPrecioFinal()));
+                }
+            }
+            System.out.println("Datos guardados exitosamente en formato CSV.");
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error al guardar los datos.");
+        }
+    }
 
+    private void cargarDatos() {
+        catalogo.clear();  // Limpiar el catálogo actual antes de cargar nuevos datos
+
+        try (BufferedReader reader = new BufferedReader(new FileReader("catalogo.csv"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(",");
+                if (data.length >= 6) {
+                    String tipoVehiculo = data[0];
+                    String marca = data[1];
+                    String modelo = data[2];
+                    int numPlazas = Integer.parseInt(data[3]);
+                    double precioBase = Double.parseDouble(data[4]);
+                    double precioFinal = Double.parseDouble(data[5]);
+
+                    if ("Turismo".equals(tipoVehiculo)) {
+                        VehiculoTurismo turismo = new VehiculoTurismo(marca, modelo, numPlazas, precioBase);
+                        turismo.setPrecioFinal(precioFinal);
+                        catalogo.add(turismo);
+                    } else if ("Furgoneta".equals(tipoVehiculo)) {
+                        double capacidadCarga = Double.parseDouble(data[6]);
+                        Furgoneta furgoneta = new Furgoneta(marca, modelo, numPlazas, precioBase, capacidadCarga);
+                        furgoneta.setPrecioFinal(precioFinal);
+                        catalogo.add(furgoneta);
+                    }
+                }
+            }
+            System.out.println("Datos cargados exitosamente desde el archivo CSV.");
+        } catch (IOException | NumberFormatException e) {
+            e.printStackTrace();
+            System.out.println("Error al cargar los datos desde el archivo CSV.");
+        }
+    }
 
     private void agregarVehiculo(Vehiculo vehiculo) {
         catalogo.add(vehiculo);
