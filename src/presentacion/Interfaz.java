@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 import dominio.*;
 
-public class Interfaz implements Serializable {
+public class Interfaz {
     private static final long serialVersionUID = 1L;
 
     private List<Vehiculo> catalogo;
